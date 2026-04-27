@@ -61,14 +61,14 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: docker/login-action@v3
+      - uses: docker/login-action@v4
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - uses: docker/build-push-action@v5
+      - uses: docker/build-push-action@v7
         with:
           context: ./backend
           push: true
@@ -180,7 +180,7 @@ github-actions-masterclass/
 
 ### Code Conventions
 - YAML: 2-space indentation
-- Action versions: pin to major (`@v4`) — don't introduce SHA pinning yet, it's a Ch 9 topic in the longer course
+- Action versions (current as of 2026-04): `actions/checkout@v6`, `docker/login-action@v4`, `docker/build-push-action@v7`, `appleboy/ssh-action@v1`. Pin to major; SHA pinning is a security topic for a later course.
 - Always show the **full** workflow file, not partial diffs
 - Secrets: never echo, never commit, always reference via `${{ secrets.* }}`
 - Docker Hub image name: `<dockerhub-username>/skillpulse-backend`
